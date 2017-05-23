@@ -52,6 +52,8 @@ int main(int argc, char *argv[]) {
     wiringPiSetupSys();
     printf("Sending: SystemCode[%i] UnitCode[%i] Command[%i]\n", systemCode, unitCode, command);
     RCSwitch mySwitch = RCSwitch();
+    mySwitch.setProtocol(1);
+    mySwitch.setPulseLength(447);
     mySwitch.enableTransmit(PIN);
 
     switch(command) {

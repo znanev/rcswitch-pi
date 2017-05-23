@@ -24,42 +24,21 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    int systemCode = atoi(argv[1]);
-    int unitCode = atoi(argv[2]);
     int command  = atoi(argv[3]);
 
-    if (systemCode < 0 || systemCode > 4)
-    {
-        printUsage(argv[0]);
-        printf("ERROR: Invalid system code specified [%i]. Valid range is 1-4\n", systemCode);
-        return -1;
-    }
-
-    if (unitCode < 0 || unitCode > 4)
-    {
-        printUsage(argv[0]);
-        printf("ERROR: Invalid unit code specified [%i]. Valid range is 1-4\n", unitCode);
-        return -1;
-    }
-
-    if (command < 0 || command > 1)
-    {
-        printUsage(argv[0]);
-        printf("ERROR: Invalid command specified [%i]. Valid values are: 0 (off) or 1 (on).\n", command);
-        return -1;
-    }
-
     wiringPiSetupSys();
-    printf("Sending: SystemCode[%i] UnitCode[%i] Command[%i]\n", systemCode, unitCode, command);
+    printf("Sending: SystemCode[%s] UnitCode[%s] Command[%i]\n", argv[1], argv[2], command);
     RCSwitch mySwitch = RCSwitch();
+    mySwitch.setProtocol(1);
+    mySwitch.setPulseLength(316);
     mySwitch.enableTransmit(PIN);
 
     switch(command) {
         case 1:
-            mySwitch.switchOn(systemCode, unitCode);
+            mySwitch.switchOn(argv[1], argv[2]);
             break;
         case 0:
-            mySwitch.switchOff(systemCode, unitCode);
+            mySwitch.switchOff(argv[1], argv[2]);
             break;
         default:
             printf("Command [%i] is unsupported\n", command);
@@ -71,7 +50,8 @@ int main(int argc, char *argv[]) {
 void printUsage(char* commandName)
 {
     printf("Usage: %s SystemCode UnitCode Command\n\n", commandName);
-    printf("SystemCode: 1-4\n");
-    printf("UnitCode: 1-4\n");
+    printf("SystemCode: \"00000\" - \"11111\"\n");
+    printf("UnitCode: \"00000\" - \"11111\"\n");
     printf("Command: 0 (off) or 1 (on)\n\n");
 }
+

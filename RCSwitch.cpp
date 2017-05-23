@@ -38,6 +38,7 @@ RCSwitch::RCSwitch() {
   this->nTransmitterPin = -1;
   RCSwitch::nReceivedValue = NULL;
   this->setPulseLength(350);
+//  this->setPulseLength(1000);
   this->setRepeatTransmit(10);
   this->setReceiveTolerance(60);
   this->setProtocol(1);
