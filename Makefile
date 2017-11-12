@@ -22,4 +22,4 @@ codesend: RCSwitch.o codesend.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $+ -o $@ -lwiringPi
 
 clean:
-	$(RM) *.o send sendTriState sendRev sniffer codesend
+	$(RM) *.o send sendTriState sendRev sniffer codesend sendDIP sendRotary
