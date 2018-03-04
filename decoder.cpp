@@ -6,27 +6,20 @@
 static const char* bin2tristate(const char* bin); static char * dec2binWzerofill(unsigned long Dec, unsigned int bitLength); void output(unsigned long decimal, unsigned int length, unsigned 
 int delay, unsigned int* raw, unsigned int protocol) {
   const char* b = dec2binWzerofill(decimal, length);
-  printf( "Decimal: ");
-  printf("%d", decimal);
-  printf(" (");
-  printf("%d", length );
-  printf("Bit) Binary: ");
-  printf( b );
-  printf(" Tri-State: ");
-  printf( bin2tristate( b) );
-  printf(" PulseLength: ");
-  printf("%d", delay);
-  printf(" microseconds");
-  printf(" Protocol: ");
-  printf("%d\n", protocol);
-  
+  printf("  Decimal: %d (%d-bit)\n", decimal, length);
+  printf("  Binary: %s\n", b );
+  printf("  Tri-State: %s\n", bin2tristate(b));
+  printf("  PulseLength: %d microseconds\n", delay);
+  printf("  Protocol: %d\n", protocol);
+
+/*
   printf("Raw data: ");
   for (unsigned int i=0; i<= length*2; i++) {
     printf("%d", raw[i]);
     printf(",");
   }
-  printf("\n");
-  printf("\n");
+*/
+  printf("\n\n");
 }
 static const char* bin2tristate(const char* bin) {
   static char returnValue[50];

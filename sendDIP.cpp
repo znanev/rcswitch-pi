@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
     printf("Sending: SystemCode[%s] UnitCode[%s] Command[%i]\n", argv[1], argv[2], command);
     RCSwitch mySwitch = RCSwitch();
     mySwitch.setProtocol(1);
-    mySwitch.setPulseLength(303);
+    mySwitch.setPulseLength(305);
     mySwitch.enableTransmit(PIN);
 
     switch(command) {
