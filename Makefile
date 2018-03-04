@@ -15,7 +15,7 @@ sendTriState: RCSwitch.o sendTriState.o
 sendRev: RCSwitch.o sendRev.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $+ -o $@ -lwiringPi
 
-sniffer: RCSwitch.o RFSniffer.o
+sniffer: RCSwitch.o decoder.o RFSniffer.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $+ -o $@ -lwiringPi
 
 codesend: RCSwitch.o codesend.o
